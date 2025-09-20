@@ -1,61 +1,141 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Deskripsi Program
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Judul
+- Aplikasi Arsip Surat Berbasis Web dengan Laravel (Bootstrap)
 
-## About Laravel
+Tujuan
+- Aplikasi ini dibuat untuk membantu pengelolaan surat masuk/keluar di organisasi atau instansi agar lebih teratur, mudah dicari, dan aman tersimpan dalam bentuk digital (PDF). Dengan aplikasi ini, pengguna dapat menyimpan, mencari, mengedit, dan mengunduh arsip surat melalui antarmuka web yang sederhana.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Fitur Utama
+1. Manajemen Kategori Surat
+   * Tambah kategori baru.
+   * Edit dan hapus kategori.
+   * Pencarian kategori berdasarkan nama.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Pengarsipan Surat
+   * Unggah surat dalam bentuk **PDF**.
+   * Metadata surat: nomor surat, judul, kategori, deskripsi.
+   * File disimpan otomatis ke folder `storage/app/public/archives`.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Pratinjau & Unduh Surat
+   * Lihat pratinjau file PDF langsung di browser.
+   * Unduh file arsip kembali dengan nama file yang sesuai judul.
 
-## Learning Laravel
+4. Edit Arsip
+   * Ubah data metadata surat.
+   * Ganti file PDF (file lama otomatis terhapus).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5. Hapus Arsip
+   * Konfirmasi hapus melalui modal Bootstrap sebelum data benar-benar dihapus.
+   * Hapus data di database sekaligus file fisik di storage.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+6. Pencarian Arsip
+   * Cari berdasarkan judul atau nomor surat.
+   * Hasil ditampilkan dengan pagination.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+7. Antarmuka User-Friendly
+   * Desain sederhana dengan **Bootstrap** (tanpa Tailwind).
+   * Notifikasi sukses/error menggunakan alert Bootstrap.
 
-## Laravel Sponsors
+Cara Menjalankan Aplikasi
+Berikut langkah-langkah mulai dari clone repository sampai aplikasi siap digunakan:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Clone repository
+git clone https://github.com/[username]/nama-repo.git
 
-### Premium Partners
+2. Install dependency PHP
+composer install
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
 
-## Contributing
+3. Buat file `.env`
+pada cmd : copy .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+Kemudian buka file `.env` dan atur konfigurasi database, contoh:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE= arsip_db
+DB_USERNAME=root
+DB_PASSWORD=
 
-## Security Vulnerabilities
+4. Generate key aplikasi
+php artisan key:generate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. Buat database
+Buat database kosong bernama `arsip_db` (atau sesuai `.env`) di MySQL/phpMyAdmin:
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Jalankan migrasi tabel
+php artisan migrate
+
+7. Buat symbolic link ke storage
+php artisan storage:link
+
+8. Jalankan server
+php artisan serve -> `http://127.0.0.1:8000`
+
+
+**Alur Penggunaan Aplikasi Arsip Surat:**
+1. **Buka Aplikasi**
+   * Setelah Pengguna mengakses aplikasi melalui browser dengan alamat `http://127.0.0.1:8000/`.
+   * Halaman utama langsung menampilkan daftar arsip yang sudah tersimpan.
+
+2. **Tambah Arsip Baru**
+   * Pengguna klik tombol **Tambah Arsip**.
+   * Isi form dengan:
+     * Nomor Surat
+     * Judul Surat
+     * Pilih Kategori (misalnya: Undangan, Laporan, Pengumuman)
+     * Upload file surat dalam format **PDF**
+   * Setelah disimpan:
+     * Sistem memvalidasi input.
+     * File PDF disimpan di folder `storage/app/public/archives`.
+     * Metadata surat (nomor, judul, kategori, nama file, tanggal unggah) disimpan ke tabel `archives`.
+
+3. **Lihat Detail Arsip**
+   * Dari daftar arsip, pengguna bisa klik salah satu arsip.
+   * Halaman detail menampilkan informasi lengkap (nomor surat, judul, kategori, tanggal unggah) + preview file PDF.
+
+4. **Unduh Arsip**
+   * Klik tombol **Unduh**, sistem mengambil file dari storage dan mengirimkannya ke browser.
+   * File PDF bisa langsung dibuka atau disimpan di perangkat pengguna.
+
+5. **Edit Arsip**
+   * Pengguna pilih arsip → klik tombol **Edit**.
+   * Metadata surat bisa diperbarui (nomor, judul, kategori).
+   * Jika file PDF diganti:
+     * File lama otomatis dihapus dari storage.
+     * File baru disimpan di `storage/app/public/archives`.
+       
+6. **Hapus Arsip**
+   * Klik tombol **Hapus** pada arsip yang dituju.
+   * Sistem memunculkan **modal konfirmasi (Bootstrap)** agar pengguna tidak salah hapus.
+   * Jika konfirmasi:
+     * Data arsip dihapus dari tabel **`archives`**.
+     * File fisik PDF ikut terhapus dari storage.
+
+7. **Cari Arsip**
+   * Pengguna bisa menggunakan fitur pencarian berdasarkan **judul** atau **nomor surat**.
+   * Hasil pencarian ditampilkan dalam bentuk daftar dengan **pagination** agar lebih rapi.
+
+8. **Kelola Kategori Arsip**
+   * Pengguna juga dapat mengelola kategori melalui menu kategori:
+     * **Tambah kategori** → isi nama kategori baru (contoh: “Surat Masuk”, “Surat Keluar”).
+     * **Edit kategori** → ubah nama kategori yang sudah ada.
+     * **Hapus kategori** → kategori yang tidak digunakan lagi bisa dihapus.
+
+**Berikut adalah screenshot tampilan halaman web aplikasi saya**
+<img width="1919" height="963" alt="image" src="https://github.com/user-attachments/assets/8cbe72f4-6f6d-43d3-8b70-5b243f4f82e6" />
+<img width="1918" height="981" alt="image" src="https://github.com/user-attachments/assets/0b2af169-e8ff-4f64-94e4-0507067049d9" />
+<img width="1919" height="962" alt="image" src="https://github.com/user-attachments/assets/bd7799a2-6ed3-445f-8cb2-31c8aa940fc5" />
+<img width="1919" height="974" alt="image" src="https://github.com/user-attachments/assets/3a133a51-8728-4e6b-b498-a2b4f2908034" />
+<img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/01287ab5-c10f-46e6-a9b9-9f4db41c877f" />
+<img width="1919" height="966" alt="image" src="https://github.com/user-attachments/assets/fe42acb0-ca62-4e73-b104-669f013b0a1c" />
+<img width="1912" height="961" alt="image" src="https://github.com/user-attachments/assets/1f836d2c-4bed-4c35-8c71-ed3337d8373b" />
+<img width="1917" height="963" alt="image" src="https://github.com/user-attachments/assets/c2481b58-9d88-4dce-9e2e-e101adc043ba" />
+<img width="1919" height="986" alt="image" src="https://github.com/user-attachments/assets/10a64616-ba7f-457d-8a04-5efc69085dfc" />
+
+Terimakasih..
+
